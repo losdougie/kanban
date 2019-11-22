@@ -1,40 +1,99 @@
 {% extends 'layout/base.html' %}
 {% block content %}
 <div class="container">
+    <div class="card-deck">
     {% for todo in todos %}
     {% if todo.status == "BACKLOG" %}
-        {{ todo.title }}
-        {{ todo.desc }}
-        {{ todo.get_status_display }}
-        {{ todo.get_priority_display }}
-        {{ todo.owner }}
-        {{ todo.updated.date }}
-        {{ todo.created.date }}
+        <div class="card border-info">
+            <div class="card-body">
+                <h4 class="card-title">{{ todo.title }}</h4>
+                <p class="card-text">{{ todo.get_priority_display }}</p>
+                <blockquote class="card-bodyquote">
+                        <p>{{ todo.desc }}</p>
+                        <footer class="blockquote-footer">
+                            <small>
+                                added {{ todo.created.date }} by
+                                <cite title="Source Title">{{ todo.owner }}</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
+                <p class="card-text">
+                    <small class="text-muted">{{ todo.updated.date }}</small>
+                    <small class="text-muted">{{ todo.get_status_display }}</small>
+                </p>
+            </div>
+        </div>
     {% elif todo.status == "TODO" %}
-    {{ todo.title }}
-    {{ todo.desc }}
-    {{ todo.get_status_display }}
-    {{ todo.get_priority_display }}
-    {{ todo.owner }}
-    {{ todo.updated.date }}
-    {{ todo.created.date }}
+    <div class="card border-primary">
+            <div class="card-body">
+                <h4 class="card-title">{{ todo.title }}</h4>
+                <p class="card-text">{{ todo.get_priority_display }}</p>
+                <blockquote class="card-bodyquote">
+                        <p>{{ todo.desc }}</p>
+                        {% if todo.owner != None %}
+                        <footer class="blockquote-footer">
+                            last updated <small class="text-muted">{{ todo.updated.date }}</small>
+                            <small>
+                                created {{ todo.created.date }} and owned by
+                                <cite title="Source Title">{{ todo.owner }}</cite>
+                            </small>
+                        </footer>
+                        {% endif %}
+                    </blockquote>
+                <p class="card-text">
+                    
+                    <small class="text-muted">{{ todo.get_status_display }}</small>
+                </p>
+            </div>
+        </div>
     {% elif todo.status == "DOING" %}
-    {{ todo.title }}
-    {{ todo.desc }}
-    {{ todo.get_status_display }}
-    {{ todo.get_priority_display }}
-    {{ todo.owner }}
-    {{ todo.updated.date }}
-    {{ todo.created.date }}
+    <div class="card border-success">
+            <div class="card-body">
+                <h4 class="card-title">{{ todo.title }}</h4>
+                <p class="card-text">{{ todo.get_priority_display }}</p>
+                <blockquote class="card-bodyquote">
+                        <p>{{ todo.desc }}</p>
+                        {% if todo.owner != None %}
+                        <footer class="blockquote-footer">
+                            last updated <small class="text-muted">{{ todo.updated.date }}</small>
+                            <small>
+                                created {{ todo.created.date }} and owned by
+                                <cite title="Source Title">{{ todo.owner }}</cite>
+                            </small>
+                        </footer>
+                        {% endif %}
+                    </blockquote>
+                <p class="card-text">
+                    
+                    <small class="text-muted">{{ todo.get_status_display }}</small>
+                </p>
+            </div>
+        </div>
     {% elif todo.status == "DONE" %}
-    {{ todo.title }}
-    {{ todo.desc }}
-    {{ todo.get_status_display }}
-    {{ todo.get_priority_display }}
-    {{ todo.owner }}
-    {{ todo.updated.date }}
-    {{ todo.created.date }}
-    {% endif %}
-    {% endfor %}
+    <div class="card border-dark text-dark">
+            <div class="card-body">
+                <h4 class="card-title">{{ todo.title }}</h4>
+                <p class="card-text">{{ todo.get_priority_display }}</p>
+                <blockquote class="card-bodyquote">
+                        <p>{{ todo.desc }}</p>
+                        {% if todo.owner != None %}
+                        <footer class="blockquote-footer">
+                            last updated <small class="text-muted">{{ todo.updated.date }}</small>
+                            <small>
+                                created {{ todo.created.date }} and owned by
+                                <cite title="Source Title">{{ todo.owner }}</cite>
+                            </small>
+                        </footer>
+                        {% endif %}
+                    </blockquote>
+                <p class="card-text">
+                    
+                    <small class="text-muted">{{ todo.get_status_display }}</small>
+                </p>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
