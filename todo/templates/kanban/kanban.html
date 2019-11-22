@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<div class="container">
+    {% for todo in todos %}
+    {% if todo.status == "BACKLOG" %}
+        {{ todo.title }}
+        {{ todo.desc }}
+        {{ todo.get_status_display }}
+        {{ todo.get_priority_display }}
+        {{ todo.owner }}
+        {{ todo.updated.date }}
+        {{ todo.created.date }}
+    {% elif todo.status == "TODO" %}
+    {{ todo.title }}
+    {{ todo.desc }}
+    {{ todo.get_status_display }}
+    {{ todo.get_priority_display }}
+    {{ todo.owner }}
+    {{ todo.updated.date }}
+    {{ todo.created.date }}
+    {% elif todo.status == "DOING" %}
+    {{ todo.title }}
+    {{ todo.desc }}
+    {{ todo.get_status_display }}
+    {{ todo.get_priority_display }}
+    {{ todo.owner }}
+    {{ todo.updated.date }}
+    {{ todo.created.date }}
+    {% elif todo.status == "DONE" %}
+    {{ todo.title }}
+    {{ todo.desc }}
+    {{ todo.get_status_display }}
+    {{ todo.get_priority_display }}
+    {{ todo.owner }}
+    {{ todo.updated.date }}
+    {{ todo.created.date }}
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
